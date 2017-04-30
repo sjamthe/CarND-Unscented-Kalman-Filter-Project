@@ -74,6 +74,8 @@ public:
   ///* the current NIS for laser
   double NIS_laser_;
 
+  double previous_timestamp_;
+
   /**
    * Constructor
    */
@@ -93,7 +95,7 @@ public:
   /**
    * Prediction Predicts sigma points, the state, and the state covariance
    * matrix
-   * @param delta_t Time between k and k+1 in s
+   * @param measurement_pack Time between k and k+1 in s
    */
   void Prediction(double delta_t);
 

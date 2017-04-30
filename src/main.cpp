@@ -39,13 +39,12 @@ void check_arguments(int argc, char* argv[]) {
 
 void check_files(ifstream& in_file, string& in_name,
                  ofstream& out_file, string& out_name) {
+  if (!out_file.is_open()) {
+      cerr << "Cannot open output file: " << out_name << endl;
+      exit(EXIT_FAILURE);
+  }
   if (!in_file.is_open()) {
     cerr << "Cannot open input file: " << in_name << endl;
-    exit(EXIT_FAILURE);
-  }
-
-  if (!out_file.is_open()) {
-    cerr << "Cannot open output file: " << out_name << endl;
     exit(EXIT_FAILURE);
   }
 }
@@ -164,7 +163,6 @@ int main(int argc, char* argv[]) {
 
     // timestamp
     out_file_ << measurement_pack_list[k].timestamp_ << "\t"; // pos1 - est
-
     // output the state vector
     out_file_ << ukf.x_(0) << "\t"; // pos1 - est
     out_file_ << ukf.x_(1) << "\t"; // pos2 - est
